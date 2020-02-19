@@ -1,4 +1,6 @@
-service: notes-app-2-api
+org: motts1
+app: equity
+service: equity-serverless
 
 # Create an optimized package for our functions
 package:
