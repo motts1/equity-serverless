@@ -1,0 +1,14 @@
+
+
+npx aws-api-gateway-cli-test \
+--username='sierramott1@gmail.com' \
+--password='Password1!' \
+--user-pool-id='us-east-1_Eq6eC56yC' \
+--app-client-id='37lhua9q5uf620291qk8sifd5o' \
+--cognito-region='us-east-1' \
+--identity-pool-id='us-east-1:14bcb71a-f64c-4a12-99a2-1ee978f000c0' \
+--invoke-url='https://avgxpcm952.execute-api.us-east-1.amazonaws.com/dev' \
+--api-gateway-region='us-east-1' \
+--path-template='/notes' \
+--method='POST' \
+--body='{"content":"hello world","attachment":"hello.jpg"}'
