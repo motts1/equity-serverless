@@ -1,14 +1,36 @@
-
+create iam user:
+access key id: AKIA2LPXIKISEZGB24IL
+secret access key: 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
 
 npx aws-api-gateway-cli-test \
 --username='sierramott1@gmail.com' \
 --password='Password1!' \
 --user-pool-id='us-east-2_0KKifJeZY' \
 --app-client-id='2tltof5m9pmvb79vqto39mgvm0' \
---cognito-region='us-east-2' \
+--cognito-region='us-east-1' \
 --identity-pool-id='us-east-2:7c90f140-e92b-41d3-a372-c003d11d554b' \
 --invoke-url='https://avgxpcm952.execute-api.us-east-1.amazonaws.com/dev' \
 --api-gateway-region='us-east-1' \
 --path-template='/notes' \
 --method='POST' \
 --body='{"content":"hello world","attachment":"hello.jpg"}'
+
+//us east 1 on some and 2 on others??
+
+create user
+
+aws cognito-idp sign-up \
+  --region us-east-2 \
+  --client-id 458815lpomaekl49vltrfes59g \
+  --username example@gmail.com \
+  --password Passw0rd!
+
+
+
+  aws cognito-idp admin-confirm-sign-up \
+   --region us-east-2 \
+   --user-pool-id us-east-2_BIgc47ftc \
+   --username example@gmail.com
+
+
+   us-east-2:21ebb16c-f694-412c-9f60-0b3e967f131f
