@@ -20,7 +20,6 @@ const ProfileSchema = new Schema({
     backImage: String,
     link1: String,
     link2: String,
-    tracks: Array,
 });
 export default model('Profile', ProfileSchema);
 

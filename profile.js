@@ -1,34 +1,34 @@
-const Profile = require('./models/Profile').default;
+const Profile = require('./models/Profile');
 const mongoose = require('mongoose');
 
 module.exports.create = async (event, context, callback) => {
-    context.callbackWaitsForEmptyEventLoop = false;
-    try {
-      await mongoose.connect(process.env.DB);
-      const profile = await Profile.create(JSON.parse(event.body));
-      await mongoose.connection.close();
-      return callback(null, {
-        statusCode: 200,
-        body: JSON.stringify(profile),
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Credentials': true
-        }
-      });
-    }
-    catch (err) {
-      await mongoose.connection.close();
-      return callback(null, {
-        statusCode: err.statusCode || 500,
-        body: JSON.stringify(err),
-        headers: {
-          'Content-Type': 'text/plain',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Credentials': true
-        }
-      });
-    }
-  };
+  context.callbackWaitsForEmptyEventLoop = false;
+  try {
+    await mongoose.connect(process.env.DB);
+    const profile = await Profile.create(JSON.parse(event.body));
+    await mongoose.connection.close();
+    return callback(null, {
+      statusCode: 200,
+      body: JSON.stringify(profile),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true
+      }
+    });
+  }
+  catch (err) {
+    await mongoose.connection.close();
+    return callback(null, {
+      statusCode: err.statusCode || 500,
+      body: JSON.stringify(err),
+      headers: {
+        'Content-Type': 'text/plain',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true
+      }
+    });
+  }
+};
 
 module.exports.getOne = async (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
