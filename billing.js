@@ -3,9 +3,11 @@ import { calculateCost } from "./libs/billing-lib";
 import { success, failure } from "./libs/response-lib";
 
 export async function main(event, context) {
-  const { storage, source } = JSON.parse(event.body);
-  const amount = calculateCost(storage);
+  const { price, source } = JSON.parse(event.body);
+  const amount = calculateCost(price);
   const description = "Scratch charge";
+
+  console.log(price, amount, 'hi');
 
   // Load our secret key from the  environment variables
   const stripe = stripePackage(process.env.stripeSecretKey);

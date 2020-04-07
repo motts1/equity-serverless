@@ -52,75 +52,59 @@ functions:
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
-  create:
-    handler: create.main
+  # create:
+  #   handler: create.main
+  #   events:
+  #     - http:
+  #         path: notes
+  #         method: post
+  #         cors: true
+  #         authorizer: aws_iam
+  createProfile:
+    handler: profiles.create
+    environment:
+      DB: ${ssm:equity-serverless}
     events:
       - http:
-          path: notes
+          path: profiles
           method: post
           cors: true
-          authorizer: aws_iam
-
-  get:
-    # Defines an HTTP API endpoint that calls the main function in get.js
-    # - path: url path is /notes/{id}
-    # - method: GET request
-    handler: get.main
+  getOneProfile:
+    handler: profiles.getOne
+    environment:
+      DB: ${ssm:equity-serverless}
     events:
       - http:
-          path: notes/{id}
+          path: profiles/{id}
           method: get
           cors: true
-          authorizer: aws_iam
-
-  list:
-    # Defines an HTTP API endpoint that calls the main function in list.js
-    # - path: url path is /notes
-    # - method: GET request
-    handler: list.main
+  getAllProfiles:
+    handler: profiles.getAll
+    environment:
+      DB: ${ssm:equity-serverless}
     events:
       - http:
-          path: notes
+          path: profiles
           method: get
           cors: true
-          authorizer: aws_iam
-
-  update:
-    # Defines an HTTP API endpoint that calls the main function in update.js
-    # - path: url path is /notes/{id}
-    # - method: PUT request
-    handler: update.main
+  updateProfile:
+    handler: profiles.update
+    environment:
+      DB: ${ssm:equity-serverless}
     events:
       - http:
-          path: notes/{id}
+          path: profiles/{id}
           method: put
           cors: true
-          authorizer: aws_iam
-
-  delete:
-    # Defines an HTTP API endpoint that calls the main function in delete.js
-    # - path: url path is /notes/{id}
-    # - method: DELETE request
-    handler: delete.main
+  deleteProfile:
+    handler: profiles.delete
+    environment:
+      DB: ${ssm:equity-serverless}
     events:
       - http:
-          path: notes/{id}
+          path: profiles/{id}
           method: delete
           cors: true
-          authorizer: aws_iam
-
-  billing:
-    # Defines an HTTP API endpoint that calls the main function in billing.js
-    # - path: url path is /billing
-    # - method: POST request
-    handler: billing.main
-    events:
-      - http:
-          path: billing
-          method: post
-          cors: true
-          authorizer: aws_iam
-
 # Create our resources with separate CloudFormation templates
 resources:
   # API Gateway Errors
